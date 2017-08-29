@@ -1,0 +1,20 @@
+{
+  "name": "@lifaon/Color",
+  "version": "1.0.0",
+  "description": "Provide a simple Color class to work with multiple color formats",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "scripts": {
+    "start": "tsc"
+  },
+  "author": "valentin",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lifaon74/Color"
+  },
+  "devDependencies": {
+    "@types/node": "latest",
+    "typescript": "latest"
+  }
+}
