@@ -5,7 +5,9 @@
   "main": "index.js",
   "types": "index.d.ts",
   "scripts": {
-    "start": "tsc"
+    "start": "tsc",
+    "build": "tsc",
+    "tsdoc": "typedoc --out ./tsdoc ./src"
   },
   "author": "valentin",
   "license": "MIT",
@@ -15,6 +17,7 @@
   },
   "devDependencies": {
     "@types/node": "latest",
+    "typedoc": "^0.8.0",
     "typescript": "latest"
   }
 }

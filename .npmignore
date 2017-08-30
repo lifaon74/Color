@@ -1,0 +1,44 @@
+#################
+## Misc
+#################
+nbproject
+manifest.mf
+build.xml
+node_modules/*
+npm-debug.log
+.npmrc
+#*.ts
+#!*.d.ts
+.github
+!*.metadata.json
+
+#################
+## Doc
+#################
+tsdoc/*
+config.json
+
+#################
+## JetBrains
+#################
+.idea
+.project
+.settings
+
+############
+## Windows
+############
+
+# Windows image file caches
+Thumbs.db
+
+# Folder config file
+Desktop.ini
+
+############
+## Mac
+############
+
+# Mac crap
+.DS_Store
+**/.DS_Store

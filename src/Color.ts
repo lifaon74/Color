@@ -7,11 +7,17 @@ export interface HSLAObject {
 
 export class Color {
 
-  static numberPattern: string = '\\s*(\\d+(?:\\.\\d+)?%?)\\s*';
-  static rgbaRegExp: RegExp = new RegExp('rgb(a)?\\(' + Color.numberPattern + ',' + Color.numberPattern + ',' + Color.numberPattern + '(?:,' + Color.numberPattern + ')?\\)');
-  static hslaRegExp: RegExp = new RegExp('hsl(a)?\\(' + Color.numberPattern + ',' + Color.numberPattern + ',' + Color.numberPattern + '(?:,' + Color.numberPattern + ')?\\)');
+  private static numberPattern: string = '\\s*(\\d+(?:\\.\\d+)?%?)\\s*';
+  private static rgbaRegExp: RegExp = new RegExp('rgb(a)?\\(' + Color.numberPattern + ',' + Color.numberPattern + ',' + Color.numberPattern + '(?:,' + Color.numberPattern + ')?\\)');
+  private static hslaRegExp: RegExp = new RegExp('hsl(a)?\\(' + Color.numberPattern + ',' + Color.numberPattern + ',' + Color.numberPattern + '(?:,' + Color.numberPattern + ')?\\)');
 
 
+  /**
+   * Takes any string and tries to resolve to a valid Color.
+   * @example Color.fromString('red');
+   * @param {string} stringColor
+   * @return {Color}
+   */
   static fromString(stringColor: string): Color {
     const element: HTMLElement = document.createElement('div');
     element.style.color = stringColor;
@@ -25,6 +31,12 @@ export class Color {
     throw new Error('Invalid color : ' + stringColor);
   }
 
+  /**
+   * Takes a css rgb or rgba color and returns a Color.
+   * @example Color.fromRGB('rgba(255, 0, 0, 1)');
+   * @param {string} rgbColor
+   * @return {Color}
+   */
   static fromRGB(rgbColor: string): Color {
     this.rgbaRegExp.lastIndex = 0;
     const match: RegExpExecArray | null = this.rgbaRegExp.exec(rgbColor);
@@ -42,6 +54,12 @@ export class Color {
     throw new Error('Invalid rgb color : ' + rgbColor);
   }
 
+  /**
+   * Takes a css hsl or hsla color and returns a Color.
+   * @example Color.fromHSL('hsla(0, 100%, 50%, 1)');
+   * @param {string} hslColor
+   * @return {Color}
+   */
   static fromHSL(hslColor: string): Color {
     this.hslaRegExp.lastIndex = 0;
     const match: RegExpExecArray | null = this.hslaRegExp.exec(hslColor);
@@ -59,6 +77,11 @@ export class Color {
     throw new Error('Invalid hsl color : ' + hslColor);
   }
 
+  /**
+   * Takes an HSLAObject and returns a Color.
+   * @param {HSLAObject} hslaObject
+   * @return {Color}
+   */
   static fromHSLObject(hslaObject: HSLAObject): Color {
     let r: number, g: number, b: number;
 
@@ -80,6 +103,12 @@ export class Color {
     );
   }
 
+  /**
+   * Takes a css hex color (3, 6, or 8 digits) and returns a Color.
+   * @example Color.fromHex('#FF0000');
+   * @param {string} hexColor
+   * @return {Color}
+   */
   static fromHex(hexColor: string): Color {
     hexColor = hexColor.trim();
     if(hexColor.startsWith('#')) hexColor = hexColor.slice(1);
@@ -154,6 +183,13 @@ export class Color {
   private _b: number;
   private _a: number;
 
+  /**
+   * Constructs a Color with r, b, g, a values.
+   * @param {number} r
+   * @param {number} g
+   * @param {number} b
+   * @param {number} a
+   */
   constructor(r: number, g: number, b: number, a: number = 255) {
     this.r = r;
     this.g = g;
@@ -161,6 +197,7 @@ export class Color {
     this.a = a;
   }
 
+  /** Getter and setters for r, b, g, a values **/
 
   get r(): number { return this._r; }
   set r(value: number) { this._r = Color.normalizeColorValue(value); }
@@ -174,7 +211,11 @@ export class Color {
   get a(): number { return this._a; }
   set a(value: number) { this._a = Color.normalizeColorValue(value); }
 
-
+  /**
+   * Returns the css rgb or rgba color.
+   * @param {boolean} alpha
+   * @return {string}
+   */
   toRGB(alpha: boolean = false): string {
     return 'rgb' + (alpha ? 'a' : '') + '(' +
       this.r + ', ' +
@@ -184,10 +225,19 @@ export class Color {
       ')';
   }
 
+  /**
+   * Returns the css rgba color.
+   * @return {string}
+   */
   toRGBA(): string {
     return this.toRGB(true);
   }
 
+  /**
+   * Returns the css hsl or hsla color.
+   * @param {boolean} alpha
+   * @return {string}
+   */
   toHSL(alpha: boolean = false) {
     const hsla: HSLAObject = this.toHSLAObject();
     return 'hsl' + (alpha ? 'a' : '') + '(' +
@@ -198,10 +248,19 @@ export class Color {
       ')';
   }
 
+  /**
+   * Returns the css hsla color.
+   * @return {string}
+   */
   toHSLA(): string {
     return this.toHSL(true);
   }
 
+  /**
+   * Returns the css hex color.
+   * @param {boolean} alpha
+   * @return {string}
+   */
   toHex(alpha: boolean = false): string {
     return '#' +
       Color.decimalToHex(this.r) +
@@ -211,6 +270,10 @@ export class Color {
       ;
   }
 
+  /**
+   * Returns an HSLAObject
+   * @return {HSLAObject}
+   */
   toHSLAObject(): HSLAObject {
     const r: number = this.r / 255;
     const g: number = this.g / 255;
@@ -248,6 +311,5 @@ export class Color {
 
     return hslaObject;
   }
-
 
 }
