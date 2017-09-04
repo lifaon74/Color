@@ -7,7 +7,8 @@
   "scripts": {
     "start": "tsc",
     "build": "tsc",
-    "tsdoc": "typedoc --out ./tsdoc ./src"
+    "tsdoc-html": "typedoc --out ./tsdoc/html ./src",
+    "tsdoc-md": "jsdoc2md"
   },
   "author": "valentin",
   "license": "MIT",
@@ -17,6 +18,7 @@
   },
   "devDependencies": {
     "@types/node": "latest",
+    "jsdoc-to-markdown": "^3.0.0",
     "typedoc": "^0.8.0",
     "typescript": "latest"
   }

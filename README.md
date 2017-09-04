@@ -1,4 +1,4 @@
-#Color
+# Color
 
 Provide a simple class to manage and convert colors from different formats :
 
@@ -22,4 +22,4 @@ console.log(color.toHSL());
 console.log(color.toHex());
 ```
 
-[Full documentation](./tsdoc/index.html)
+[Full documentation](./tsdoc/html/index.html)
