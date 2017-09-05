@@ -22,4 +22,4 @@ console.log(color.toHSL());
 console.log(color.toHex());
 ```
 
-[Full documentation](./tsdoc/html/index.html)
+[Full documentation](./docs/index.html)

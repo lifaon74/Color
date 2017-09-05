@@ -19,7 +19,7 @@
   },
   "tsdoc": {
     "source": "./src",
-    "destination": "./tsdoc",
+    "destination": "./docs",
     "systemName": "Color"
   }
 }

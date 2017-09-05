@@ -7,8 +7,7 @@
   "scripts": {
     "start": "tsc",
     "build": "tsc",
-    "tsdoc-html": "typedoc --out ./tsdoc/html ./src",
-    "tsdoc-md": "jsdoc2md"
+    "tsdoc": "typedoc --out ./docs ./src"
   },
   "author": "valentin",
   "license": "MIT",
