@@ -7,6 +7,8 @@ build.xml
 node_modules/*
 npm-debug.log
 .npmrc
+.nojekyll
+_config.yml
 #*.ts
 #!*.d.ts
 .github
